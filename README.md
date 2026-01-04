@@ -4,4 +4,7 @@ The project focuses on real-world data engineering challenges: NoSQL-to-relation
 
 I particularly like this pipeline because it demonstrates practical data engineering fundamentals: working with NoSQL to relational data, schema alignment, anonymized and reusable design, and production-ready practices such as environment variables, idempotent table creation, and clear DAG structure. It reflects how I approach building maintainable, readable pipelines that can be extended with incremental loading, monitoring, and scaling when needed.
 
+# Architecture
+<img width="1024" height="1536" alt="Architecture" src="https://github.com/user-attachments/assets/575733eb-56b1-41bf-8bae-419b305a6c74" />
+
 
