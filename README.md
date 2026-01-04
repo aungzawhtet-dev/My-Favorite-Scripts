@@ -1,44 +1,7 @@
 # My-Favorite-Scripts
-This is my favorite data pipeline, an Apache Airflow–orchestrated ETL pipeline that extracts data from MongoDB, transforms it using Pandas, and loads it into PostgreSQL. I designed it with clean task separation (extract, transform, load), environment-based configuration for security, and clear data normalization to handle semi-structured JSON fields.
+This repository showcases a production-oriented ETL pipeline orchestrated with Apache Airflow, extracting data from MongoDB, transforming it with Pandas, and loading it into PostgreSQL with data quality checks and reconciliation.
+The project focuses on real-world data engineering challenges: NoSQL-to-relational normalization, backfill-safe scheduling, idempotent loading, and operational reliability.
 
 I particularly like this pipeline because it demonstrates practical data engineering fundamentals: working with NoSQL to relational data, schema alignment, anonymized and reusable design, and production-ready practices such as environment variables, idempotent table creation, and clear DAG structure. It reflects how I approach building maintainable, readable pipelines that can be extended with incremental loading, monitoring, and scaling when needed.
-
-
-┌────────────┐
-│  MongoDB   │
-│ (NoSQL)    │
-└─────┬──────┘
-      │
-      │  Extract (logical date window)
-      ▼
-┌────────────┐
-│   Airflow  │
-│   DAG      │
-│────────────│
-│ 1. Extract │
-│ 2. Transform
-│ 3. Load    │
-└─────┬──────┘
-      │
-      │  Staging (run_id isolated)
-      ▼
-┌────────────────────┐
-│ PostgreSQL         │
-│ staging schema     │
-│ (raw JSONB)        │
-└─────┬──────────────┘
-      │
-      │  Upsert
-      ▼
-┌────────────────────┐
-│ PostgreSQL         │
-│ final mart         │
-│ (normalized table) │
-└─────┬──────────────┘
-      │
-      │
-      ├──▶ Soda Data Quality Checks
-      │
-      └──▶ Row Count Reconciliation
 
 
