@@ -167,6 +167,7 @@ def transform_task(**context):
     # CamelCase / Snake_case change to lower letters
 
     # handling nested fields from MongoDB stores documents as BSON (Binary JSON) to Json string to be ready for PostgreSQL as “one cell = one value” (not a structure, not a collection).
+    # BSON -> Python dict/list -> JSON string -> PostgreSQL TEXT
     for col in ["requestparams", "createdby", "updatedby", "statuschangedby"]:
         if col in df.columns:
             df[col] = df[col].apply(clean_value)
@@ -476,5 +477,6 @@ with DAG(
     
     
     check_conn >> extract_task >> transform >> load >> soda_quality_check >> row_count_check
+
 
 
