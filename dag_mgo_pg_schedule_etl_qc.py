@@ -428,7 +428,10 @@ def row_count_reconciliation(**context):
 default_args = {
     "owner": "airflow",
     "retries": 2,
-    "retry_delay": timedelta(minutes=5)
+    "retry_delay": timedelta(minutes=5),
+    "email": ["testemail@gmail.com"],  
+    "email_on_failure": True,
+    "email_on_retry": False         
 }
 
 with DAG(
@@ -477,6 +480,7 @@ with DAG(
     
     
     check_conn >> extract_task >> transform >> load >> soda_quality_check >> row_count_check
+
 
 
 
